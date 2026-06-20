@@ -3,60 +3,63 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Praticando vue</title>
 </head>
 
 <body>
 
-    <div id="app">
-        <h1>{{titulo}}</h1>
+    <div class="container">
+        <div id="app">
+            <h1 class="textCenter"> {{ titulo }} </h1>
 
-        <div v-if="autenticacao">
-            <h2>Bem-vindo, {{nome}}!</h2>
-            <button @click="logout">Sair</button>
+            <div v-if="autenticacao" class="containerCenter">
+                <h2 class="textCenter">Bem-vindo, {{ usuario.nome }} !</h2>
+                <button @click="logout" class="btnWidth">Sair</button>
+            </div>
+
+            <div v-else>
+                <h2 class="textCenter">Faça Login</h2>
+                <form @submit.prevent="login" class="containerForm">
+                    <label for="username">Usuário</label>
+                    <input type="text" id="username" v-model="username" required placeholder="Maria joão">
+
+                    <label for="password">Senha</label>
+                    <input type="text" id="password" v-model="password" required placeholder="********">
+
+                    <button type="submit">Entrar</button>
+                </form>
+            </div>
+            <p v-show="erro" class="erro">Nome do usuário ou senha está incorreto!!</p>
         </div>
-
-        <div v-else>
-            <h2>Faça Login</h2>
-            <form @submit.prevent="login">
-                <label for="username">Usuário</label>
-                <input type="text" id="username" v-model="username" required placeholder="Maria joão">
-                
-                <label for="password">Senha</label>
-                <input type="text" id="password" v-model="password" required *************>
-
-                <button type="submit">Entrar</button>
-            </form>
-        </div>
-        <p v-show="erro" class="erro">Nome do usuário ou senha está incorreto!!</p>
     </div>
 </body>
-
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 <script>
 
     const app = new Vue({
-        el: "app",
-        data:{
+        el: "#app",
+        data: {
             titulo: "Autenticação de Login",
             autenticacao: false,
             usuario: {
-                nome: Otto
+                nome: "Otto"
             },
             username: "",
             password: "",
             erro: false
         },
         methods: {
-            login(){
-                if(this.username === "usuario" && this.password === "senha"){
+            login() {
+                if (this.username === "usuario" && this.password === "senha") {
                     this.autenticacao = true;
                     this.erro = false;
-                } else{
+                } else {
                     this.erro = true;
                 }
-            },           
-            logout(){
+            },
+            logout() {
                 this.autenticacao = false;
                 this.username = "";
                 this.password = "";

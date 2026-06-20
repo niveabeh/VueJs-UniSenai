@@ -1,32 +1,102 @@
-*{
+* {
     box-sizing: border-box;
-    
+
 }
-body{
+
+body {
     background-color: #efeded;
 }
-section{
+
+section {
     width: 100%;
     padding: 0 12%;
     margin: 12% 0;
 }
-.container{
+
+.container {
     width: 100%;
     padding: 12px;
     border: 1px solid #acacac;
     border-radius: 5px;
     background-color: #ffffff;
 }
-.linha{
+
+.linha {
     height: 1px;
     width: 100%;
     background-color: #acacac;
     margin: 12px 0;
 }
-.erro{
+
+.erro {
     width: 100%;
     padding: 8px;
     text-align: center;
     color: red;
-    background-color: #FBE9E7; 
+    background-color: #FBE9E7;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.containerForm {
+    padding: 20px;
+    border-radius: 16px;
+    margin: 0 auto;
+    border: 1px solid #acacac;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+button {
+    background-color: #acacac;
+    color: #fff;
+    border-radius: 16px;
+    padding: 8px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background-color: #7a7a7a;
+}
+
+button:active {
+    background-color: dodgerblue;
+}
+
+input {
+
+    padding: 8px;
+    border-radius: 16px;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.containerCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.btnWidth {
+    width: 30%;
+    color: red;
+    background-color: #FBE9E7;
+    border: 1px solid red;
+}
+
+.btnWidth:hover {
+    color: #fff;
+    background-color: red;
+}
+
+.btnWidth:active {
+    background-color: rgb(199, 8, 8);
 }
