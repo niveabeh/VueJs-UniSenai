@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Diretivas</title>
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <h2>V-bind</h2>
+
+            <div id="app">
+                <a v-bind:href="url" target="_blank">Acesse o Vue.js</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>V-model</h2>
+
+            <div id="model">
+                <input v-model="message" type="text" placeholder="Digite algo...">
+                <p>{{ message }}</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>v-if, v-else-if, v-else</h2>
+
+            <div id="if">
+                <h3>Exemplo de v-if, v-else-if e v-else</h3>
+                <select v-model="ver">
+                    <option :value="true">Verdadeiro</option>
+                    <option :value="false">Falso</option>
+                </select>
+                <p v-if="ver">Esta mensagem é exibida se ver for verdadeiro.</p>
+                <p v-else>Esta mensagem é exibida se ver for falso.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>v-if, v-else, v-show</h2>
+
+            <div id="show">
+                <select v-model="status">
+                    <option :value="true">Mostrar Título</option>
+                    <option :value="false">Esconder Título</option>
+                </select>
+                <h4 v-if="status">{{titulo}}</h4>
+                <h4 v-else>Não existe titulo!</h4>
+                <h4 v-show="status">{{titulo}}</h4>
+            </div>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Exemplo mais elaborado</h2>
+
+            <div id="elaborado">
+                <select v-model="encontrado">
+                    <option :value="true">Encontrado</option>
+                    <option :value="false">Não encontrado</option>
+                </select>
+                <div v-if="encontrado">
+                    <p>ID: {{ user.id }}</p>
+                    <p>Nome: {{ user.name }}</p>
+                    <p>Email: {{ user.email }}</p>
+                    <p>Profissão: {{ user.profissao }}</p>
+                </div>
+                <div v-else>
+                    <p>Usuário não encontrado.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section>
+
+        <div class="container">
+            <h2>V-for</h2>
+            <div id="forExemplo">
+                <h3>Loop com números</h3>
+                <ul id="exemploUm">
+                    <li v-for="n in 5" :key="n">Número {{ n }}</li>
+                </ul>
+                <div class="linha"></div>
+            </div>
+        </div>
+
+
+    </section>
+
+    <section>
+
+        <div class="container">
+            <h2>V-for mais elaborado</h2>
+            <div id="forExemploDois">
+                <h3>{{titulo}}</h3>
+                <ul>
+                    <li v-for="item in linguagens" :key="item.nome">{{item.nome}} Ano: {{item.ano}}</li>
+
+                </ul>
+            </div>
+        </div>
+
+
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                url: 'https://vuejs.org/'
+            }
+        });
+
+        const model = new Vue({
+            el: '#model',
+            data: {
+                message: ''
+            }
+        });
+        const ifExemplo = new Vue({
+            el: "#if",
+            data: {
+                ver: true
+            }
+        })
+        const showExemplo = new Vue({
+            el: "#show",
+            data: {
+                status: true,
+                titulo: "Título Exemplo"
+            }
+        })
+        const elaborado = new Vue({
+            el: "#elaborado",
+            data: {
+                encontrado: true,
+                user: {
+                    id: 1,
+                    name: 'João',
+                    email: 'joao@example.com',
+                    profissao: 'Desenvolvedor'
+                }
+            }
+        })
+
+        const forExemplo = new Vue({
+            el: "#forExemplo",
+            data: {
+                n: 0
+            }
+        })
+
+        const forExemploDois = new Vue({
+            el: "#forExemploDois",
+            data: {
+                titulo: "Linguagens de Programação",
+                linguagens: [
+                    {
+                        nome: 'JavaScript',
+                        ano: 1995
+                    },
+                    {
+                        nome: 'Python',
+                        ano: 1991
+                    },
+                    {
+                        nome: 'Java',
+                        ano: 1995
+                    },
+                    {
+                        nome: 'C#',
+                        ano: 2000
+                    }
+                ]
+            }
+        })
+    </script>
+
+</body>
+
+</html>

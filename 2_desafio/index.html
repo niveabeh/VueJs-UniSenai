@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praticando vue</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>{{titulo}}</h1>
+
+        <div v-if="autenticacao">
+            <h2>Bem-vindo, {{nome}}!</h2>
+            <button @click="logout">Sair</button>
+        </div>
+
+        <div v-else>
+            <h2>Faça Login</h2>
+            <form @submit.prevent="login">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" v-model="username" required placeholder="Maria joão">
+                
+                <label for="password">Senha</label>
+                <input type="text" id="password" v-model="password" required *************>
+
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+        <p v-show="erro" class="erro">Nome do usuário ou senha está incorreto!!</p>
+    </div>
+</body>
+
+<script>
+
+    const app = new Vue({
+        el: "app",
+        data:{
+            titulo: "Autenticação de Login",
+            autenticacao: false,
+            usuario: {
+                nome: Otto
+            },
+            username: "",
+            password: "",
+            erro: false
+        },
+        methods: {
+            login(){
+                if(this.username === "usuario" && this.password === "senha"){
+                    this.autenticacao = true;
+                    this.erro = false;
+                } else{
+                    this.erro = true;
+                }
+            },           
+            logout(){
+                this.autenticacao = false;
+                this.username = "";
+                this.password = "";
+            }
+        }
+    })
+</script>
+
+</html>
