@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Vue em Formulario</title>
+</head>
+
+<body>
+
+    <section>
+
+        <div id="app">
+
+            <h1> {{titulo}} </h1>
+            <form @submit.prevent="login" class="containerForm">
+                <div class="contDiv">
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome" v-model="nome">
+                </div>
+                <div class="contDiv">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" v-model="email">
+                </div>
+
+                <button type="submit">Enviar</button>
+            </form>
+
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+
+        const app = new Vue({
+            el: "#app",
+            data: {
+                titulo: "Formulário com Vue.js",
+                nome: "",
+                email: ""
+            },
+            methods: {
+
+                login() {
+                    if (this.nome === "" ) {
+                       alert("Nome de usuário vazio");
+                    } else if(this.email === ""){
+                        alert("Nome de email vazio");
+                    }
+                     else {
+                        alert(`Cadastrado com sucesso!!!\n Nome: ${this.nome} \nEmail: ${this.email}`);
+                    }
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

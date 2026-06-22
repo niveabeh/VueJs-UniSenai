@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Vue em Formulario</title>
+</head>
+
+<body>
+
+    <section>
+
+        <div id="app">
+
+            <h1> {{titulo}} </h1>
+            <div class="contDiv">
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" v-model="nome" >
+            </div>
+            <div class="contDiv">
+                <label for="telefone">Telefone</label>
+                <input type="text" name="telefone" v-model="telefone">
+            </div>
+            <div class="contDiv">
+                <label for="novidades">Deseja receber nossas novidades?</label>
+                <input type="radio" value="sim" name="novSim">Sim
+                <input type="radio" value="Não" v-model="novidades"  name="novNao">Não
+            </div>
+            <div class="contDiv">
+                <label for="inte">Interesses</label>
+                <input type="checkbox" value="Futebol" v-model="interesses">Futebol
+                <input type="checkbox" value="Formula1" v-model="interesses">Formula 1
+                <input type="checkbox" value="Natacao" v-model="interesses">Natação
+            </div>
+            <div class="contDiv">
+                <label for="meio">Como nos conheceu?</label>
+                <select name="meio" v-model="meio">
+                    <option value="">Escolha</option>
+                    <option value="Google">Google</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="Linkedin">Linkedin</option>
+                </select>
+            </div>
+            <button type="submit">Enviar</button>
+
+            <div>
+                <p>Nome: {{ nome }}</p>
+                <p>Telefone: {{ telefone }}</p>
+                <p>Novidade: {{ novidades }}</p>
+                <p>Interesses: {{ interesses }}</p>
+                <p>Meio: {{ meio }}</p>
+            </div>
+        </div>
+    </section>
+
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+      <script>
+
+        const app = new Vue({
+            el: "#app",
+            data: {
+                titulo: "Formulário com Vue.js",
+                nome: "",
+                telefone: "",
+                novidades: "",
+                interesses: [],
+                meio: ""
+            } 
+        })
+      </script>
+
+</body>
+
+</html>
