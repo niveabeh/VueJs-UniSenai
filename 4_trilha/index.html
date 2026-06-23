@@ -28,6 +28,12 @@
             <h1> {{titulo}} </h1>
             <img v-bind:src="imagem" alt="">
             <p :class="classe"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus reiciendis facilis odio dolor commodi saepe. Quod laboriosam necessitatibus, voluptatibus repellat ipsa aliquam quam quas exercitationem aut animi sint qui voluptatem!</p>
+
+            <div>
+                <p :class="{red: isRed, green, isGreen}" :style"{fontSize: fontSizec + 'px'}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus reiciendis facilis odio dolor</p>
+                <button @click="toogleAumentar">Aumentar</button>
+                <button @click="toogleAlterar">Alterar</button>
+            </div>
         </div>
     </section>
 
@@ -39,8 +45,15 @@
             data: {
                 titulo: "Formulário com Vue.js",
                 classe: "green",
-                Imagem: "img/casas.jpg"
-            } 
+                Imagem: "img/casas.jpg",
+                isRed: true,
+                isGreen: false,
+                fontSize: 16
+
+            }, 
+            methods:{
+
+            }
         })
       </script>
 
