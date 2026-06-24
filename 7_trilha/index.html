@@ -13,7 +13,9 @@
     <section>
 
         <div id="app">
-            <h1> {{titulo}} </h1>
+            <h1> {{user.nome | capitalize}} </h1>
+            <p>{{user.bio | truncade(30) }}</p>
+            
             
         </div>
     </section>
@@ -24,11 +26,29 @@
         const app = new Vue({
             el: "#app",
             data: {
-                titulo: "V-on Eventos",
+                user: {
+                    nome: "maria",
+                    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, nam nobis autem eum accusantium inventore placeat explicabo unde doloribus dolore corrupti rerum est nulla soluta repudiandae eaque magnam suscipit quasi?"
+                }
                
             },
             methods: {
                 
+            },
+            filters:{
+                capitalize(valor){
+                    if(!valor) return "";
+                    valor = valor .toString();
+                    return valor.charAt(0).toUpperCase() + valor.slice(1); 
+                },
+                truncade(valor, limite){
+                    if(!valor) return "";
+                    valor = valor.toString();
+                    // if else ternario
+                    // se o valor do texto for maior que o limite
+                    return valor.length >  limite ? valor.substring(0, limite) + "..." : valor;
+
+                }
             }
         })
     </script>
