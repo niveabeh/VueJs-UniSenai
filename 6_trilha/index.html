@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Vue em v-on</title>
+</head>
+
+<body>
+
+    <section>
+
+        <div id="app">
+            <h1> {{titulo}} </h1>
+            <button @click="clicando">Clique aqui</button>
+            <button @mouseover="passando">Hover</button>
+            <p v-show="mostrar" style="color: green;">passando o mouse por cima</p> <br><br>
+            <input @keyup="mostrarTecla" type="text" placeholder="Escreva algo">
+            <p style="font-size: 3rem;" >{{ tecla}}</p>
+            <br><br><br>
+            <button @click="mapear">Mapear ponteiro</button>
+            <p style="font-size: 3rem; color: orange;">{{respMapa}}</p>
+            <br><br>
+
+            <!-- foi usado o once (só permite um click) -->
+            <button @click="contador">Adicionar</button>
+            <p>{{respContador}}</p>
+
+
+
+            <!-- 
+            .prevent: É usado para impedir o comportamento padrão de um evento,
+            como o envio do formulário ou o redirecionamento.
+            
+            
+            
+            .stop: Interrompe a propagação do evento, evitando que outros elementos
+            ancestrais na árvore do DOM também tratem o mesmo evento. -->
+
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+
+        const app = new Vue({
+            el: "#app",
+            data: {
+                titulo: "V-on Eventos",
+                mostrar: false,
+                tecla: "",
+                respMapa: "",
+                respContador: ""
+            },
+            methods: {
+                clicando(){
+                    alert("Você clicou!!!!!");
+                },
+                passando(){
+                    this.mostrar = !this.mostrar ;
+                },
+                mostrarTecla(e){
+                  this.tecla = e.key;
+                },
+                mapear(e){
+                    this.respMapa = `Eixo x: ${e.clientX} Eixo Y: ${e.clientY}`
+                },
+                contador(){
+                    this.respContador++ ; 
+                }
+               
+            }
+        })
+    </script>
+
+</body>
+
+</html>
