@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Vuejs lifecycle hooks, o ciclo de vida</title>
+</head>
+
+<body>
+
+    <section>
+
+        <div id="app">
+            <h1>{{message}}</h1>
+            <button @click="chamar">Chamar Mensagem</button>
+            <button @click="destruir">Destruir Mensagem</button>
+           
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+
+        const app = new Vue({
+            el: "#app",
+            data: {
+                message: "Olá Vue.js"
+            },
+            //metodos - funcoes
+            methods: {
+               chamar(){
+                    this.message = "mensagem atualizada"
+               }
+               ,
+               destruir(){
+                this.$destroy(); 
+               }
+            },
+            beforeCreate(){
+                console.log("os dados ainda estao disponiveis")
+            },
+            created(){
+                console.log("os dados já foram inicializados")
+            },
+            beforeMount(){
+                console.log("componente prestes a ser montado no DOM")
+            },
+            mounted(){
+                console.log("componente montado")
+            },
+            beforeUpdate(){
+                console.log("Dados alterado, preste a atualizar o DOM")
+            },
+            filters:{
+               
+            },
+            //calcula algo
+            computed: {
+                
+            },
+            //muda o estado =
+            watch: {
+                
+            }
+        })
+    </script>
+
+</body>
+
+</html>
