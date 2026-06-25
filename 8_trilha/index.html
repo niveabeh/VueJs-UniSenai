@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Vuejs computed e watch e suas peculiaridades</title>
+</head>
+
+<body>
+
+    <section>
+
+        <div id="app">
+            <p>{{fullName}}</p>
+            <!-- computed é um calculo, e watch é como se fosse uma pesquisa que será ativado se for mudado            <input v-model="firstName" placeholder="Primeiro nome"> -->
+            <input v-model="lastName" placeholder="Sobrenome">
+            <p>{{apiResponde}}</p>
+            
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+
+        const app = new Vue({
+            el: "#app",
+            data: {
+                firstName: "nivea",
+                lastName: "souza",
+                apiResponde: ""
+            },
+            methods: {
+              fakeApiCall(name){
+                this.apiResponde =`API chamada com o nome: ${name}`;
+              }  
+            },
+            filters:{
+               
+            },
+            computed: {
+                fullName(){
+                    return `${this.firstName} ${this.lastName}`;
+                }
+            },
+            watch: {
+                fullName(newName){
+                    this.fakeApiCall(newName);
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
