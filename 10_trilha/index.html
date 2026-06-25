@@ -14,8 +14,19 @@
 
         <div id="app">
 
-            <button @click=" = 'componente-a'">Componente A</button>
-            <button @click=" = 'componente-a'">Componente B</button>
+            <h1>{{titulo}}</h1>
+            <menu-bar>Item 1</menu-bar>
+            <menu-bar>Item 2</menu-bar>
+            <menu-bar>Item 3</menu-bar>
+
+            <template id="menu">
+                <ul>
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3
+                    </li>
+                </ul>
+            </template>
 
         </div>
     </section>
@@ -23,29 +34,15 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
     <script>
 
-        Vue.component('btn-reutilizavel', {
-            //falo que vou querer que o texto, a cor e o evento vão ser dinamicos
-            props: ["texto", "cor", "evento"], 
-            //ali em click= evento > falo onde o valor de evento vai se encaixar 
-            template: '<button @click=" evento " class="btn1" :style="{ backgroundColor: cor} ">{{texto}}</button>',
-            methods:{
-                //falo o que o valor do evento vai fazer
-                evento(){
-                    //crio um evento meu chamdo clicando
-                    this.$emit("clicando");
-                }
-            }
+        Vue.component('menu-bar', {
+            template: '#menu',
         })
         new Vue({
             el: "#app",
-            methods:{
-                //e crio um metodo clique 
-               clique(){
-                alert("O botão foi clicado");
-               }
+            data: {
+                titulo: "Vue JS",
             }
-
-        })
+        });
 
 
     </script>
