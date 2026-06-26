@@ -13,11 +13,34 @@
     <section>
 
         <div id="app">
-            <p>{{fullName}}</p>
-            <!-- computed é um calculo, e watch é como se fosse uma pesquisa que será ativado se for mudado            <input v-model="firstName" placeholder="Primeiro nome"> -->
-            <input v-model="lastName" placeholder="Sobrenome">
-            <p>{{apiResponde}}</p>
-            
+            <h1>Cadastro de Agenda</h1>
+            <form @submit.prevent="addContato">
+                <input type="text" v-model="novoContato.nome" placeholder="Nome" required>
+                <input type="text" v-model="novoContato.telefone" placeholder="Telefone" required>
+                <input type="text" v-model="novoContato.email" placeholder="Email" required>
+                <button type="submit" class="btn btnAdd">Adicionar</button>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Email</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(contato, i) in contatos" :key="i">
+                        <td> {{contato.nome}} </td>
+                        <td>{{contato.telefone}}</td>
+                        <td>{{contato.email}}</td>
+                        <td>
+                            <button class="btn btnEditar" @click="editarContt(i)">Editar</button>
+                            <button class="btn btnDeletar" @click="deletarContt(i)">Deletar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
@@ -27,26 +50,36 @@
         const app = new Vue({
             el: "#app",
             data: {
-                firstName: "nivea",
-                lastName: "souza",
-                apiResponde: ""
+                novoContato: {
+                    nome: "",
+                    telefone: "",
+                    email: ""
+                },
+                contatos: []
             },
             methods: {
-              fakeApiCall(name){
-                this.apiResponde =`API chamada com o nome: ${name}`;
-              }  
-            },
-            filters:{
-               
-            },
-            computed: {
-                fullName(){
-                    return `${this.firstName} ${this.lastName}`;
-                }
-            },
-            watch: {
-                fullName(newName){
-                    this.fakeApiCall(newName);
+                addContato() {
+                    if (this.novoContato.nome && this.novoContato.telefone && this.novoContato.email) {
+                        if (this.editI >= 0) {
+                            this.$set(this.contatos, this.editI, {
+                                ...this.novoContato
+                            });
+                            this.editI = -1;
+                        } else {
+                            this.contatos.push({
+                                ...this.novoContato
+                            });
+                        }
+                    }
+                },
+                editarContt(i) {
+                    this.novoContato = {
+                        ...this.contatos[i]
+                    };
+                    this.editI = i;
+                },
+                deletarContt(i) {
+                   this.contatos.splice(i, 1);
                 }
             }
         })
